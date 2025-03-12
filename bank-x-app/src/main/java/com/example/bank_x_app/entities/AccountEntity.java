@@ -1,5 +1,6 @@
 package com.example.bank_x_app.entities;
 
+import com.example.bank_x_app.enums.AccountType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,7 +30,8 @@ public class AccountEntity {
     private String accountNumber;
 
     @Column(name = "account_type", nullable = false)
-    private String accountType;
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
 
     @Column(name = "balance", nullable = false)
     private BigDecimal balance = BigDecimal.ZERO;
