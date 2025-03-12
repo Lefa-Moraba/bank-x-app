@@ -1,6 +1,7 @@
 package com.example.bank_x_app.controllers;
 
 
+import com.example.bank_x_app.DTOs.CustomerDTO;
 import com.example.bank_x_app.entities.CustomerEntity;
 import com.example.bank_x_app.services.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +20,12 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping
-    public List<CustomerEntity> getAllCustomers() {
+    public List<CustomerDTO> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
     @GetMapping("/{email}")
-    public ResponseEntity<CustomerEntity> getCustomerByEmail(@PathVariable String email) {
+    public ResponseEntity<CustomerDTO> getCustomerByEmail(@PathVariable String email) {
         return customerService.getCustomerByEmail(email)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
