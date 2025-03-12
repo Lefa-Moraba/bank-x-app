@@ -16,21 +16,21 @@ INSERT INTO accounts (customer_id, account_number, account_type, balance, create
 (4, '8888888888', 'SAVINGS', 600.00, CURRENT_TIMESTAMP);
 
 
-INSERT INTO transactions (from_account_id, to_account_id, amount, transaction_type, external_reference, status, created_at) VALUES
-(NULL, 1, 500.00, 'DEPOSIT', 'REF1001', 'COMPLETED', '2025-03-12 10:00:00'),
-(1, 2, 200.00, 'TRANSFER', 'REF1002', 'COMPLETED', '2025-03-12 12:00:00'),
-(3, NULL, 50.00, 'FEE', 'REF1003', 'COMPLETED', '2025-03-12 14:00:00'),
-(NULL, 4, 1000.00, 'DEPOSIT', 'REF1004', 'COMPLETED', '2025-03-12 09:30:00'),
-(5, 6, 250.00, 'TRANSFER', 'REF1005', 'PENDING', '2025-03-12 13:15:00'),
-(2, NULL, 20.00, 'INTEREST', 'REF1006', 'COMPLETED', '2025-03-12 15:00:00'),
-(7, 8, 150.00, 'TRANSFER', 'REF1007', 'COMPLETED', '2025-03-12 16:30:00'),
-(8, NULL, 30.00, 'FEE', 'REF1008', 'COMPLETED', '2025-03-12 17:00:00');
+INSERT INTO transactions (from_account_number, to_account_number, amount, transaction_type, external_reference, status, created_at) VALUES
+(NULL, '1111111111', 500.00, 'DEPOSIT', 'REF1001', 'COMPLETED', '2025-03-12 10:00:00'),
+('1111111111', '2222222222', 200.00, 'TRANSFER', 'REF1002', 'COMPLETED', '2025-03-12 12:00:00'),
+('3333333333', NULL, 50.00, 'FEE', 'REF1003', 'COMPLETED', '2025-03-12 14:00:00'),
+(NULL, '4444444444', 1000.00, 'DEPOSIT', 'REF1004', 'COMPLETED', '2025-03-12 09:30:00'),
+('5555555555', '6666666666', 250.00, 'TRANSFER', 'REF1005', 'PENDING', '2025-03-12 13:15:00'),
+('2222222222', NULL, 20.00, 'INTEREST', 'REF1006', 'COMPLETED', '2025-03-12 15:00:00'),
+('7777777777', '8888888888', 150.00, 'TRANSFER', 'REF1007', 'COMPLETED', '2025-03-12 16:30:00'),
+('8888888888', NULL, 30.00, 'FEE', 'REF1008', 'COMPLETED', '2025-03-12 17:00:00');
 
 
-INSERT INTO bankz_transactions (customer_id, from_account_id, to_account_id, external_reference, amount, transaction_type, status, reconciliation_status, created_at) VALUES
-(1, 1, 3, 'EXTREF2001', 500.00, 'TRANSFER', 'PROCESSED', 'RECONCILED', '2025-03-12 16:00:00'),
-(2, 3, 4, 'EXTREF2002', 100.00, 'PAYMENT', 'PENDING', 'NOT_RECONCILED', '2025-03-12 17:00:00'),
-(4, 7, 8, 'EXTREF2004', 150.00, 'TRANSFER', 'FAILED', 'DISCREPANCY', '2025-03-12 19:00:00');
+INSERT INTO bankz_transactions (customer_id, from_account_number, to_account_number, external_reference, amount, transaction_type, status, reconciliation_status, created_at) VALUES
+(1, '1111111111', '3333333333', 'EXTREF2001', 500.00, 'TRANSFER', 'PROCESSED', 'RECONCILED', '2025-03-12 16:00:00'),
+(2, '3333333333', '4444444444', 'EXTREF2002', 100.00, 'PAYMENT', 'PENDING', 'NOT_RECONCILED', '2025-03-12 17:00:00'),
+(4, '7777777777', '8888888888', 'EXTREF2004', 150.00, 'TRANSFER', 'FAILED', 'DISCREPANCY', '2025-03-12 19:00:00');
 
 
 INSERT INTO notifications (customer_id, transaction_id, message, sent_at) VALUES
