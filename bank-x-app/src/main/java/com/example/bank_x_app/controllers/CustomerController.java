@@ -2,14 +2,10 @@ package com.example.bank_x_app.controllers;
 
 
 import com.example.bank_x_app.DTOs.CustomerDTO;
-import com.example.bank_x_app.entities.CustomerEntity;
 import com.example.bank_x_app.services.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +25,11 @@ public class CustomerController {
         return customerService.getCustomerByEmail(email)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<CustomerDTO> registerCustomer(@RequestBody CustomerDTO customerDTO) {
+        CustomerDTO savedCustomer = customerService.registerCustomer(customerDTO);
+        return ResponseEntity.ok(savedCustomer);
     }
 }
