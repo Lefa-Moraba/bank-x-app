@@ -1,4 +1,4 @@
-package com.example.bank_x_app.mapper;
+package com.example.bank_x_app.mappers;
 
 import com.example.bank_x_app.DTOs.AccountDTO;
 import com.example.bank_x_app.entities.AccountEntity;

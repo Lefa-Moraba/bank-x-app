@@ -1,12 +1,11 @@
 package com.example.bank_x_app.services;
 
-import com.example.bank_x_app.DTOs.AccountDTO;
 import com.example.bank_x_app.DTOs.CustomerDTO;
 import com.example.bank_x_app.entities.AccountEntity;
 import com.example.bank_x_app.entities.CustomerEntity;
 import com.example.bank_x_app.enums.AccountType;
-import com.example.bank_x_app.mapper.AccountMapper;
-import com.example.bank_x_app.mapper.CustomerMapper;
+import com.example.bank_x_app.mappers.AccountMapper;
+import com.example.bank_x_app.mappers.CustomerMapper;
 import com.example.bank_x_app.repositories.AccountRepository;
 import com.example.bank_x_app.repositories.CustomerRepository;
 import lombok.RequiredArgsConstructor;
