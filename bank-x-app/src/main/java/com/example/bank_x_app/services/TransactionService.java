@@ -79,6 +79,10 @@ public class TransactionService {
             throw new RuntimeException("Only Current Accounts can perform Transfers.");
         }
 
+        if (fromAccount.getCustomer().getId().equals(toAccount.getCustomer().getId())) {
+            throw new RuntimeException("Transfers must be between different customers.");
+        }
+
         if (fromAccount.getBalance().compareTo(transactionDTO.getAmount()) < 0) {
             throw new RuntimeException("Insufficient funds for transfer.");
         }
@@ -108,6 +112,10 @@ public class TransactionService {
         AccountEntity toAccount = accountRepository.findByAccountNumber(transactionDTO.getToAccountNumber());
         if (toAccount == null) {
             throw new RuntimeException(String.format("Account %s not found.", transactionDTO.getToAccountNumber()));
+        }
+
+        if (!fromAccount.getCustomer().getId().equals(toAccount.getCustomer().getId())) {
+            throw new RuntimeException("Internal transfers must be between the same customer's accounts.");
         }
 
 
