@@ -4,17 +4,28 @@ import com.example.bank_x_app.DTOs.CustomerDTO;
 import com.example.bank_x_app.entities.CustomerEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class CustomerMapper {
 
-    public CustomerDTO toCustomerDTO(CustomerEntity entity) {
+    private final AccountMapper accountMapper = new AccountMapper();
+
+    public CustomerDTO toCustomerDTO(CustomerEntity customerEntity) {
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setId(entity.getId());
-        customerDTO.setFirstName(entity.getFirstName());
-        customerDTO.setLastName(entity.getLastName());
-        customerDTO.setEmail(entity.getEmail());
-        customerDTO.setPhone(entity.getPhone());
-        customerDTO.setDateOfBirth(entity.getDateOfBirth());
+        customerDTO.setId(customerEntity.getId());
+        customerDTO.setFirstName(customerEntity.getFirstName());
+        customerDTO.setLastName(customerEntity.getLastName());
+        customerDTO.setEmail(customerEntity.getEmail());
+        customerDTO.setPhone(customerEntity.getPhone());
+        customerDTO.setDateOfBirth(customerEntity.getDateOfBirth());
+
+        if (customerEntity.getAccounts() != null) {
+            customerDTO.setAccounts(customerEntity.getAccounts().stream()
+                    .map(accountMapper::toAccountDTO)
+                    .collect(Collectors.toList()));
+        }
+
         return customerDTO;
     }
 

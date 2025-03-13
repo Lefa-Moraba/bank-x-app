@@ -4,8 +4,12 @@ import com.example.bank_x_app.DTOs.AccountDTO;
 import com.example.bank_x_app.entities.AccountEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class AccountMapper {
+
+    private final TransactionMapper transactionMapper = new TransactionMapper();
 
     public AccountDTO toAccountDTO(AccountEntity accountEntity) {
         AccountDTO accountDTO = new AccountDTO();
@@ -14,6 +18,17 @@ public class AccountMapper {
         accountDTO.setBalance(accountEntity.getBalance());
         accountDTO.setAccountType(accountEntity.getAccountType());
         accountDTO.setCreatedAt(accountEntity.getCreatedAt());
+
+        if (accountEntity.getOutgoingTransactions() != null || accountEntity.getIncomingTransactions() != null) {
+            accountDTO.setTransactions(accountEntity.getOutgoingTransactions().stream()
+                    .map(transactionMapper::toTransactionDTO)
+                    .collect(Collectors.toList()));
+
+            accountDTO.getTransactions().addAll(accountEntity.getIncomingTransactions().stream()
+                    .map(transactionMapper::toTransactionDTO)
+                    .collect(Collectors.toList()));
+        }
+
         return accountDTO;
     }
 
