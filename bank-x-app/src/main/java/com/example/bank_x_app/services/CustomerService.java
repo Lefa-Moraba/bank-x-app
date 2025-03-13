@@ -3,11 +3,15 @@ package com.example.bank_x_app.services;
 import com.example.bank_x_app.DTOs.CustomerDTO;
 import com.example.bank_x_app.entities.AccountEntity;
 import com.example.bank_x_app.entities.CustomerEntity;
+import com.example.bank_x_app.entities.TransactionEntity;
 import com.example.bank_x_app.enums.AccountType;
+import com.example.bank_x_app.enums.TransactionStatus;
+import com.example.bank_x_app.enums.TransactionType;
 import com.example.bank_x_app.mappers.AccountMapper;
 import com.example.bank_x_app.mappers.CustomerMapper;
 import com.example.bank_x_app.repositories.AccountRepository;
 import com.example.bank_x_app.repositories.CustomerRepository;
+import com.example.bank_x_app.repositories.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +27,10 @@ import java.util.stream.Collectors;
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private final AccountRepository accountRepository;
+    private final TransactionRepository transactionRepository;
     private final CustomerMapper customerMapper;
-    private final AccountMapper accountMapper;
+
+    private BigDecimal joiningBonusAmount = new BigDecimal(500);
 
     public List<CustomerDTO> getAllCustomers() {
         List<CustomerEntity> customerEntities = customerRepository.findAll();
@@ -42,27 +48,43 @@ public class CustomerService {
         CustomerEntity customerEntity = customerMapper.toCustomerEntity(customerDTO);
         CustomerEntity savedCustomer = customerRepository.save(customerEntity);
 
-        createAccount(savedCustomer, AccountType.CURRENT, BigDecimal.ZERO);
-        createAccount(savedCustomer, AccountType.SAVINGS, BigDecimal.ZERO);
+        AccountEntity currentAccount = createAccount(savedCustomer, AccountType.CURRENT, BigDecimal.ZERO);
+        AccountEntity savingsAccount = createAccount(savedCustomer, AccountType.SAVINGS, joiningBonusAmount);
+
+        createJoiningBonusTransaction(savingsAccount, joiningBonusAmount);
 
         return customerMapper.toCustomerDTO(savedCustomer);
     }
 
 
-    private void createAccount(CustomerEntity customerEntity, AccountType accountType, BigDecimal initialBalance) {
+    private AccountEntity createAccount(CustomerEntity customerEntity, AccountType accountType, BigDecimal initialBalance) {
         AccountEntity accountEntity = new AccountEntity();
         accountEntity.setCustomer(customerEntity);
         accountEntity.setAccountType(accountType);
         accountEntity.setBalance(initialBalance);
         accountEntity.setAccountNumber(generateAccountNumber());
 
-        accountRepository.save(accountEntity);
+        return accountRepository.save(accountEntity);
+    }
+
+    private void createJoiningBonusTransaction(AccountEntity savingsAccount, BigDecimal amount) {
+        TransactionEntity joiningBonusTransaction = new TransactionEntity();
+        joiningBonusTransaction.setFromAccount(null);
+        joiningBonusTransaction.setToAccount(savingsAccount);
+        joiningBonusTransaction.setAmount(amount);
+        joiningBonusTransaction.setTransactionType(TransactionType.DEPOSIT);
+        joiningBonusTransaction.setExternalReference(generateExternalReference());
+        joiningBonusTransaction.setStatus(TransactionStatus.COMPLETED);
+
+        transactionRepository.save(joiningBonusTransaction);
     }
 
     private String generateAccountNumber() {
         return UUID.randomUUID().toString().replace("-", "").substring(0, 20); // Unique 10-digit account number
     }
 
-
+    private String generateExternalReference() {
+        return UUID.randomUUID().toString().replace("-", "").substring(0, 15);
+    }
 }
 
