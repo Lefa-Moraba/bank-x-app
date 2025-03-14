@@ -2,14 +2,16 @@ package com.example.bank_x_app.mappers;
 
 import com.example.bank_x_app.DTOs.CustomerDTO;
 import com.example.bank_x_app.entities.CustomerEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
 @Component
+@RequiredArgsConstructor
 public class CustomerMapper {
 
-    private final AccountMapper accountMapper = new AccountMapper();
+    private final AccountMapper accountMapper;
 
     public CustomerDTO toCustomerDTO(CustomerEntity customerEntity) {
         CustomerDTO customerDTO = new CustomerDTO();
