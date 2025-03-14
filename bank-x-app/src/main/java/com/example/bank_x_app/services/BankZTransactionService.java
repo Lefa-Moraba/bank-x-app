@@ -13,6 +13,7 @@ import com.example.bank_x_app.repositories.AccountRepository;
 import com.example.bank_x_app.repositories.BankZTransactionRepository;
 import com.example.bank_x_app.repositories.CustomerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -72,9 +73,18 @@ public class BankZTransactionService {
         return processedTransactions;
     }
 
+    @Scheduled(cron = "59 59 23 * * ?")
+    @Transactional
+    public void scheduledReconciliation() {
+
+        List<BankZTransactionDTO> unreconciledTransactions = getUnreconciledTransactions();
+
+        reconcileTransactions(unreconciledTransactions);
+    }
 
     @Transactional
     public Map<String, Object> reconcileTransactions(List<BankZTransactionDTO> bankZTransactionDTOList) {
+
         List<String> externalReferences = bankZTransactionDTOList.stream()
                 .map(BankZTransactionDTO::getExternalReference)
                 .collect(Collectors.toList());
@@ -86,7 +96,6 @@ public class BankZTransactionService {
         }
         bankZTransactionRepository.saveAll(existingTransactions);
 
-
         Map<String, Object> result = Map.of(
                 "total", bankZTransactionDTOList.size(),
                 "totalReconciled", existingTransactions.size(),
@@ -97,8 +106,6 @@ public class BankZTransactionService {
 
         return result;
     }
-
-
 
     private TransactionDTO convertToTransactionDTO(BankZTransactionDTO bankZTransactionDTO) {
         TransactionDTO transactionDTO = new TransactionDTO();
