@@ -82,7 +82,7 @@ public class CustomerService {
     }
 
     private String generateAccountNumber() {
-        return UUID.randomUUID().toString().replace("-", "").substring(0, 20); // Unique 10-digit account number
+        return UUID.randomUUID().toString().replace("-", "").substring(0, 20);
     }
 
     private String generateExternalReference() {

@@ -20,12 +20,12 @@ public class TransactionMapper {
         return transactionDTO;
     }
 
-    public TransactionEntity toTransactionEntity(TransactionDTO ransactionDTO) {
+    public TransactionEntity toTransactionEntity(TransactionDTO transactionDTO) {
         TransactionEntity transactionEntity = new TransactionEntity();
-        transactionEntity.setAmount(ransactionDTO.getAmount());
-        transactionEntity.setTransactionType(ransactionDTO.getTransactionType());
-        transactionEntity.setExternalReference(ransactionDTO.getExternalReference());
-        transactionEntity.setStatus(ransactionDTO.getStatus());
+        transactionEntity.setAmount(transactionDTO.getAmount());
+        transactionEntity.setTransactionType(transactionDTO.getTransactionType());
+        transactionEntity.setExternalReference(transactionDTO.getExternalReference());
+        transactionEntity.setStatus(transactionDTO.getStatus());
         return transactionEntity;
     }
 }

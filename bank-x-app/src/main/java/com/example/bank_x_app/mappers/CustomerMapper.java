@@ -31,13 +31,13 @@ public class CustomerMapper {
         return customerDTO;
     }
 
-    public CustomerEntity toCustomerEntity(CustomerDTO dto) {
+    public CustomerEntity toCustomerEntity(CustomerDTO customerDTO) {
         CustomerEntity customerEntity = new CustomerEntity();
-        customerEntity.setFirstName(dto.getFirstName());
-        customerEntity.setLastName(dto.getLastName());
-        customerEntity.setEmail(dto.getEmail());
-        customerEntity.setPhone(dto.getPhone());
-        customerEntity.setDateOfBirth(dto.getDateOfBirth());
+        customerEntity.setFirstName(customerDTO.getFirstName());
+        customerEntity.setLastName(customerDTO.getLastName());
+        customerEntity.setEmail(customerDTO.getEmail());
+        customerEntity.setPhone(customerDTO.getPhone());
+        customerEntity.setDateOfBirth(customerDTO.getDateOfBirth());
         return customerEntity;
     }
 }
