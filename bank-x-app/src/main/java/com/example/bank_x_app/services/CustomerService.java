@@ -53,6 +53,8 @@ public class CustomerService {
 
         createJoiningBonusTransaction(savingsAccount, joiningBonusAmount);
 
+        //TODO: MUST IMPLEMENT ACTUAL NOTIFICATIONS
+        customerRegistrationNotification(savedCustomer, currentAccount, savingsAccount);
         return customerMapper.toCustomerDTO(savedCustomer);
     }
 
@@ -85,6 +87,16 @@ public class CustomerService {
 
     private String generateExternalReference() {
         return UUID.randomUUID().toString().replace("-", "").substring(0, 15);
+    }
+
+    //TODO: MUST IMPLEMENT ACTUAL NOTIFICATIONS
+    private void customerRegistrationNotification(CustomerEntity customer, AccountEntity currentAccount, AccountEntity savingsAccount) {
+        System.out.println("\nNotification: Welcome to Bank X, " + customer.getFirstName() + "!");
+        System.out.println("Your accounts have been successfully created.");
+        System.out.println("Current Account Number: " + currentAccount.getAccountNumber());
+        System.out.println("Savings Account Number: " + savingsAccount.getAccountNumber());
+        System.out.println("You have received a joining bonus of R" + joiningBonusAmount + " in your Savings Account.");
+        System.out.println("Happy Banking with Bank X!\n");
     }
 }
 

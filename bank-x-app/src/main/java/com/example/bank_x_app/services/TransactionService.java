@@ -163,6 +163,9 @@ public class TransactionService {
         transaction.setTransactionType(type);
         transaction.setExternalReference(generateExternalReference());
         transaction.setStatus(TransactionStatus.COMPLETED);
+
+        //TODO: MUST IMPLEMENT ACTUAL NOTIFICATIONS
+        sendNotification(transaction);
         return transaction;
     }
 
@@ -180,5 +183,16 @@ public class TransactionService {
 
     private String generateExternalReference() {
         return UUID.randomUUID().toString().replace("-", "").substring(0, 15);
+    }
+
+    //TODO: MUST IMPLEMENT ACTUAL NOTIFICATIONS
+    private void sendNotification(TransactionEntity transaction) {
+        System.out.println("\nNotification: Transaction Completed!");
+        System.out.println("Type: " + transaction.getTransactionType());
+        System.out.println("Amount: " + transaction.getAmount());
+        System.out.println("From: " + (transaction.getFromAccount() != null ? transaction.getFromAccount().getAccountNumber() : "BankX"));
+        System.out.println("To: " + (transaction.getToAccount() != null ? transaction.getToAccount().getAccountNumber() : "BankX"));
+        System.out.println("Reference: " + transaction.getExternalReference());
+        System.out.println("Status: " + transaction.getStatus() + "\n");
     }
 }
