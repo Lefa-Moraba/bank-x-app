@@ -79,10 +79,6 @@ public class TransactionService {
             throw new RuntimeException("Only Current Accounts can perform Transfers.");
         }
 
-        if (fromAccount.getCustomer().getId().equals(toAccount.getCustomer().getId())) {
-            throw new RuntimeException("Transfers must be between different customers.");
-        }
-
         if (fromAccount.getBalance().compareTo(transactionDTO.getAmount()) < 0) {
             throw new RuntimeException("Insufficient funds for transfer.");
         }
