@@ -6,6 +6,16 @@ meta {
 
 post {
   url: http://localhost:8080/api/customers/register
-  body: none
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "firstName": "Lefa",
+    "lastName": "Moraba",
+    "email": "lefa.moraba@entelect.co.za",
+    "phone": "0640282783",
+    "dateOfBirth": "2001-12-15"
+  }
 }

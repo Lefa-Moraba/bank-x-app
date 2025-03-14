@@ -5,7 +5,20 @@ meta {
 }
 
 post {
-  url: 
-  body: none
+  url: http://localhost:8080/api/transactions
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "fromAccountNumber": "2222222222",
+    "toAccountNumber": "1111111111",
+    "amount": 10.00,
+    "transactionType": "TRANSFER",
+    "externalReference": null,
+    "status": "PENDING",
+    "createdAt": "2025-03-12T14:30:00"
+  }
+  
 }
