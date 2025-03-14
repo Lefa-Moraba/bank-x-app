@@ -28,8 +28,8 @@ INSERT INTO transactions (from_account_number, to_account_number, amount, transa
 
 
 INSERT INTO bankz_transactions (customer_id, from_account_number, to_account_number, external_reference, amount, transaction_type, status, reconciliation_status, created_at) VALUES
-(1, '1111111111', '3333333333', 'EXTREF2001', 500.00, 'TRANSFER', 'PROCESSED', 'RECONCILED', '2025-03-12 16:00:00'),
-(2, '3333333333', '4444444444', 'EXTREF2002', 100.00, 'PAYMENT', 'PENDING', 'NOT_RECONCILED', '2025-03-12 17:00:00'),
+(1, '1111111111', '3333333333', 'EXTREF2001', 500.00, 'TRANSFER', 'COMPLETED', 'RECONCILED', '2025-03-12 16:00:00'),
+(2, '3333333333', '4444444444', 'EXTREF2002', 100.00, 'TRANSFER', 'PENDING', 'NOT_RECONCILED', '2025-03-12 17:00:00'),
 (4, '7777777777', '8888888888', 'EXTREF2004', 150.00, 'TRANSFER', 'FAILED', 'DISCREPANCY', '2025-03-12 19:00:00');
 
 
