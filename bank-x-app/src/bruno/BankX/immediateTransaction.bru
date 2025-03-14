@@ -1,0 +1,23 @@
+meta {
+  name: immediateTransaction
+  type: http
+  seq: 9
+}
+
+post {
+  url: http://localhost:8080/api/bankz/transaction
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "customerId": 1,
+    "fromAccountNumber": "1111111111",
+    "toAccountNumber": "2222222222",
+    "amount": 200.00,
+    "transactionType": "TRANSFER",
+    "externalReference": "REF2001"
+  }
+  
+}

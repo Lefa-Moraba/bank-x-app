@@ -1,0 +1,69 @@
+meta {
+  name: batchTransactions
+  type: http
+  seq: 10
+}
+
+post {
+  url: http://localhost:8080/api/bankz/transactions/batch
+  body: json
+  auth: none
+}
+
+body:json {
+  [
+    {
+      "customerId": 2,
+      "fromAccountNumber": "3333333333",
+      "toAccountNumber": "4444444444",
+      "amount": 500.00,
+      "transactionType": "TRANSFER",
+      "externalReference": "REF2002"
+    },
+    {
+      "customerId": 3,
+      "fromAccountNumber": "5555555555",
+      "toAccountNumber": "6666666666",
+      "amount": 250.00,
+      "transactionType": "TRANSFER",
+      "externalReference": "REF2003"
+    },
+    {
+      "id": 4,
+      "customerId": 1,
+      "fromAccountNumber": "1111111111",
+      "toAccountNumber": "2222222222",
+      "externalReference": "fe6007593d7741a",
+      "amount": 200,
+      "transactionType": "TRANSFER",
+      "status": "COMPLETED",
+      "reconciliationStatus": "NOT_RECONCILED",
+      "createdAt": "2025-03-14T06:10:06.56329"
+    },
+    {
+      "id": 5,
+      "customerId": 2,
+      "fromAccountNumber": "3333333333",
+      "toAccountNumber": "4444444444",
+      "externalReference": "84179d07dd7142d",
+      "amount": 500,
+      "transactionType": "TRANSFER",
+      "status": "COMPLETED",
+      "reconciliationStatus": "NOT_RECONCILED",
+      "createdAt": "2025-03-14T06:10:15.144835"
+    },
+    {
+      "id": 6,
+      "customerId": 3,
+      "fromAccountNumber": "5555555555",
+      "toAccountNumber": "6666666666",
+      "externalReference": "d848deaab73042c",
+      "amount": 250,
+      "transactionType": "TRANSFER",
+      "status": "COMPLETED",
+      "reconciliationStatus": "NOT_RECONCILED",
+      "createdAt": "2025-03-14T06:10:15.150685"
+    }
+  ]
+  
+}

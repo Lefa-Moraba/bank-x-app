@@ -6,6 +6,95 @@ meta {
 
 post {
   url: http://localhost:8080/api/bankz/reconciliation
-  body: none
+  body: json
   auth: none
+}
+
+body:json {
+  [
+    {
+      "id": 2,
+      "customerId": 2,
+      "fromAccountNumber": "3333333333",
+      "toAccountNumber": "4444444444",
+      "externalReference": "EXTREF2002",
+      "amount": 100,
+      "transactionType": "TRANSFER",
+      "status": "PENDING",
+      "reconciliationStatus": "NOT_RECONCILED",
+      "createdAt": "2025-03-12T17:00:00"
+    },
+    {
+      "id": 4,
+      "customerId": 1,
+      "fromAccountNumber": "1111111111",
+      "toAccountNumber": "2222222222",
+      "externalReference": "f8dcee183b5e4d3",
+      "amount": 200,
+      "transactionType": "TRANSFER",
+      "status": "COMPLETED",
+      "reconciliationStatus": "NOT_RECONCILED",
+      "createdAt": "2025-03-14T09:54:26.222535"
+    },
+    {
+      "id": 5,
+      "customerId": 2,
+      "fromAccountNumber": "3333333333",
+      "toAccountNumber": "4444444444",
+      "externalReference": "426888386ea6488",
+      "amount": 500,
+      "transactionType": "TRANSFER",
+      "status": "COMPLETED",
+      "reconciliationStatus": "NOT_RECONCILED",
+      "createdAt": "2025-03-14T09:54:37.356926"
+    },
+    {
+      "id": 6,
+      "customerId": 3,
+      "fromAccountNumber": "5555555555",
+      "toAccountNumber": "6666666666",
+      "externalReference": "cb63c3358b09436",
+      "amount": 250,
+      "transactionType": "TRANSFER",
+      "status": "COMPLETED",
+      "reconciliationStatus": "NOT_RECONCILED",
+      "createdAt": "2025-03-14T09:54:37.370364"
+    },
+    {
+      "id": 7,
+      "customerId": 1,
+      "fromAccountNumber": "1111111111",
+      "toAccountNumber": "2222222222",
+      "externalReference": "c56cb14379ff4a8",
+      "amount": 200,
+      "transactionType": "TRANSFER",
+      "status": "COMPLETED",
+      "reconciliationStatus": "NOT_RECONCILED",
+      "createdAt": "2025-03-14T09:54:37.379492"
+    },
+    {
+      "id": 8,
+      "customerId": 2,
+      "fromAccountNumber": "3333333333",
+      "toAccountNumber": "4444444444",
+      "externalReference": "703afbb6fd244e1",
+      "amount": 500,
+      "transactionType": "TRANSFER",
+      "status": "COMPLETED",
+      "reconciliationStatus": "NOT_RECONCILED",
+      "createdAt": "2025-03-14T09:54:37.390773"
+    },
+    {
+      "id": 9,
+      "customerId": 3,
+      "fromAccountNumber": "5555555555",
+      "toAccountNumber": "6666666666",
+      "externalReference": "864bb76037d8487",
+      "amount": 250,
+      "transactionType": "TRANSFER",
+      "status": "COMPLETED",
+      "reconciliationStatus": "NOT_RECONCILED",
+      "createdAt": "2025-03-14T09:54:37.403774"
+    }
+  ]
 }

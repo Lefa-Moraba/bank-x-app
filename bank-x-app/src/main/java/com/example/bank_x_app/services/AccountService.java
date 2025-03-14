@@ -20,4 +20,9 @@ public class AccountService {
         List<AccountEntity> accountEntities = accountRepository.findByCustomerId(customerId);
         return accountEntities.stream().map(accountMapper::toAccountDTO).collect(Collectors.toList());
     }
+
+    public List<AccountDTO> getAccountsByCustomerEmail(String email) {
+        List<AccountEntity> accountEntities = accountRepository.findByCustomerEmail(email);
+        return accountEntities.stream().map(accountMapper::toAccountDTO).collect(Collectors.toList());
+    }
 }

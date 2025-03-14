@@ -16,8 +16,13 @@ import java.util.List;
 public class AccountController {
     private final AccountService accountService;
 
-    @GetMapping("/{customer_id}")
+    @GetMapping("customerId/{customer_id}")
     public List<AccountDTO> getCustomerAccounts(@PathVariable Long customer_id) {
         return accountService.getAccountsByCustomerId(customer_id);
+    }
+
+    @GetMapping("customerEmail/{email}")
+    public List<AccountDTO> getCustomerAccountsByEmail(@PathVariable String email) {
+        return accountService.getAccountsByCustomerEmail(email);
     }
 }
